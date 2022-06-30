@@ -1,0 +1,28 @@
+{
+  "name": "response-tracker",
+  "description": "Work in progress",
+  "version": "1.0.4",
+  "manifest_version": 3,
+  "icons": {
+    "48": "icons/icon_48.png",
+    "128": "icons/icon_128.png"
+  },
+  "action": {
+    "default_title": "Response Tracker",
+    "default_popup": "panel/panel.html"
+  },
+  "host_permissions": [
+    "<all_urls>",
+    "*://*/*"
+  ],
+  "devtools_page": "devtools.html",
+  "permissions": [
+    "storage",
+    "management",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "activeTab",
+    "cookies",
+    "scripting"
+  ]
+}
