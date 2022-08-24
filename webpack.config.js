@@ -33,6 +33,11 @@ const config = {
         exclude: /node_modules/,
       },
       {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto"
+      },
+      {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
@@ -76,6 +81,7 @@ const config = {
     }),
     new CopyPlugin([
       { from: 'icons', to: 'icons', ignore: ['icon.xcf'] },
+      { from: 'dropdown/dropdown.html', to: 'dropdown/dropdown.html', transform: transformHtml },
       { from: 'panel/panel.html', to: 'panel/panel.html', transform: transformHtml },
       { from: 'panel/panel.css', to: 'panel/panel.css' },
       { from: 'devtools.html', to: 'devtools.html', transform: transformHtml },

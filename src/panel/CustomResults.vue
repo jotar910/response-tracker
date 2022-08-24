@@ -1,8 +1,8 @@
 <template>
   <details>
-    <summary :title="pattern">{{ pattern }}</summary>
+    <summary>Custom Responses</summary>
     <article v-for="resultStore in resultStores" :key="resultStore.$id">
-      <app-result :mainStore="mainStore" :store="resultStore"></app-result>
+      <app-custom-result :mainStore="mainStore" :store="resultStore"/>
     </article>
   </details>
 </template>
@@ -10,10 +10,9 @@
 <script setup>
 import {computed} from "vue";
 
-const {mainStore, store: patternStore} = defineProps(['mainStore', 'store']);
+const {mainStore} = defineProps(['mainStore']);
 
-const pattern = computed(() => patternStore.patternStr);
-const resultStores = computed(() => patternStore.urls.map(mainStore.getResult));
+const resultStores = computed(() => mainStore.customResultsList);
 </script>
 
 <style scoped>

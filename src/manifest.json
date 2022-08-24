@@ -1,7 +1,7 @@
 {
   "name": "response-tracker",
   "description": "Work in progress",
-  "version": "1.0.4",
+  "version": "0.0.1",
   "manifest_version": 3,
   "icons": {
     "48": "icons/icon_48.png",
@@ -9,7 +9,7 @@
   },
   "action": {
     "default_title": "Response Tracker",
-    "default_popup": "panel/panel.html"
+    "default_popup": "dropdown/dropdown.html"
   },
   "host_permissions": [
     "<all_urls>",
@@ -17,6 +17,7 @@
   ],
   "devtools_page": "devtools.html",
   "permissions": [
+    "webRequest",
     "storage",
     "management",
     "declarativeNetRequest",
