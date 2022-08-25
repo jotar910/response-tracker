@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {ChromeTools, responseToRaw} from '../utils/utils';
+import {ChromeTools, DEFAULT_HOST, DEFAULT_PORT, responseToRaw} from '../utils/utils';
 
 const MAX_HISTORY = 5;
 const MAX_SAVED = 5;
@@ -20,7 +20,7 @@ export const useMainStore = defineStore('main', {
       /** @type {'on'|'off'|'error'|'loading'|null} */
       serverStatus: null,
       /** @type {number} */
-      serverPort: 3000
+      serverPort: DEFAULT_PORT
     }
   },
   getters: {
@@ -144,7 +144,7 @@ export const useMainStore = defineStore('main', {
       }
 
       this.serverStatus = 'loading';
-      fetch(`https://localhost:${port}/health`)
+      fetch(`https://${DEFAULT_HOST}:${port}/health`)
         .then(async response => {
           // check for error response
           if (!response.ok) {
@@ -254,7 +254,7 @@ export const useMainStore = defineStore('main', {
       const matchPatterns = [];
 
       for (const value of this.patterns) {
-        if (value.pattern.test(url) && !url.startsWith('https://localhost:3000')) {
+        if (value.pattern.test(url) && !url.startsWith(`https://${DEFAULT_HOST}:${this.serverPort}`)) {
           value.addResponseUrl(url);
           matchPatterns.push(value.patternStr);
         }

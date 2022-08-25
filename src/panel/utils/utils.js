@@ -1,4 +1,8 @@
 import {toRaw} from "vue";
+import {useMainStore} from "../store/store";
+
+export const DEFAULT_PORT = 3000;
+export const DEFAULT_HOST = 'localhost';
 
 const regExpSyntaxCharacter = /[\^$\\.*+?()[\]{}|]/g;
 const DATABASE_NAME = 'ResponseTracker';
@@ -187,7 +191,7 @@ export class ChromeTools {
     /** @type {IStorage}  */
     const state = {
       isOn: localStorage.getItem(STORAGE_ON_OFF_KEY) === 'true',
-      port: +localStorage.getItem(STORAGE_PORT_KEY),
+      port: +(localStorage.getItem(STORAGE_PORT_KEY) || DEFAULT_PORT),
       patterns: [],
       results: [],
       customResults: []
@@ -343,7 +347,7 @@ export class ChromeTools {
         return {
           type: "redirect",
           redirect: {
-            regexSubstitution: 'https://localhost:3000?from=\\0'
+            regexSubstitution: `https://${DEFAULT_HOST}:${useMainStore().serverPort}?from=\\0`
           }
         };
       case 'modifyHeaders':

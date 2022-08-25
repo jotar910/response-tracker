@@ -40,7 +40,7 @@
 import {computed, onBeforeUnmount, onMounted, ref} from "vue";
 import {useMainStore} from "./store/store";
 import {ResponseTracker} from "./services";
-import CustomResult from "./CustomResult";
+import {DEFAULT_HOST} from "./utils/utils";
 
 const mainStore = useMainStore();
 const service = new ResponseTracker(mainStore);
@@ -92,7 +92,7 @@ function reset() {
 
 function openServerUrl() {
   if (serverStatus.value === 'error') {
-    window.open(`https://localhost:${serverPort.value}/health`);
+    window.open(`https://${DEFAULT_HOST}:${serverPort.value}/health`);
   }
 }
 </script>
